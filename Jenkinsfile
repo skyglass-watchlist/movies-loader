@@ -8,8 +8,9 @@ node('workers'){
 
     stage('Unit Tests'){
         def imageTest= docker.build("${imageName}-test", "-f Dockerfile.test .")
-        sh "docker run --rm -v ${WORKSPACE}/reports7:/app/reports ${imageName}-test"
-        junit allowEmptyResults: false, testResults: "${WORKSPACE}/reports7/*.xml"
+        sh "docker run --rm -v $PWD/reports6:/app/reports ${imageName}-test"
+        sh "ls -la $PWD/reports6"
+        junit allowEmptyResults: false, testResults: "$PWD/reports6/*.xml"
     }
 
     stage('Build'){
