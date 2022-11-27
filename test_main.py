@@ -20,4 +20,10 @@ class TestJSONLoaderMethods(unittest.TestCase):
         self.assertEqual(self.movies[0]['id'], 'tt0111161')
 
 if __name__ == '__main__':
-    unittest.main()
+    import xmlrunner
+
+    unittest.main(
+        testRunner=xmlrunner.XMLTestRunner(output='test-reports'),
+        failfast=False,
+        buffer=False,
+        catchbreak=False)
