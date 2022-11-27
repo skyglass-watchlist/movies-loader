@@ -1,4 +1,4 @@
-def imageName = 'mlabouardy/movies-loader'
+def imageName = 'skyglass/movies-loader'
 def registry = 'https://registry.slowcoder.com'
 
 node('workers'){
@@ -9,7 +9,7 @@ node('workers'){
     stage('Unit Tests'){
         def imageTest= docker.build("${imageName}-test", "-f Dockerfile.test .")
         sh "docker run --rm -v $PWD/reports:/app/reports ${imageName}-test"
-        junit "$PWD/reports/*.xml"
+        junit testResults: "$PWD/reports/*.xml"
     }
 
     stage('Build'){
