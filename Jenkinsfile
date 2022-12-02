@@ -1,5 +1,5 @@
 def imageName = 'skyglass/movies-loader'
-def registry = 'https://registry.slowcoder.com'
+def registry = 'https://registry.hub.docker.com'
 
 node('workers'){
     stage('Checkout'){
@@ -17,7 +17,7 @@ node('workers'){
     }
 
     stage('Push'){
-        docker.withRegistry(registry, 'registry') {
+        docker.withRegistry(registry, 'dockerHubCredentials') {
             docker.image(imageName).push(commitID())
 
             if (env.BRANCH_NAME == 'develop') {
